@@ -20,13 +20,22 @@ import {
   AlertCircle
 } from "lucide-react";
 
+type InterviewType = 'technical' | 'behavioral' | 'system_design';
+
 const MockInterviews: React.FC = () => {
   const [showInterview, setShowInterview] = useState(false);
-  const [selectedInterviewType, setSelectedInterviewType] = useState<'technical' | 'behavioral' | 'system_design'>('technical');
+  const [selectedInterviewType, setSelectedInterviewType] = useState<InterviewType>('technical');
 
-  const interviewTypes = [
+  const interviewTypes: Array<{
+    type: InterviewType;
+    description: string;
+    duration: string;
+    difficulty: string;
+    questions: number;
+    color: string;
+  }> = [
     { 
-      type: "technical", 
+      type: "technical" as const, 
       description: "Coding challenges and technical problem solving",
       duration: "45 min",
       difficulty: "Medium",
@@ -34,7 +43,7 @@ const MockInterviews: React.FC = () => {
       color: "bg-blue-500"
     },
     { 
-      type: "behavioral", 
+      type: "behavioral" as const, 
       description: "Situational and behavioral questions",
       duration: "30 min",
       difficulty: "Easy",
@@ -42,7 +51,7 @@ const MockInterviews: React.FC = () => {
       color: "bg-green-500"
     },
     { 
-      type: "system_design", 
+      type: "system_design" as const, 
       description: "Architecture and scalability discussions",
       duration: "60 min",
       difficulty: "Hard",
@@ -65,7 +74,7 @@ const MockInterviews: React.FC = () => {
     improvementAreas: ["System Design", "Time Management"]
   };
 
-  const startInterview = (type: 'technical' | 'behavioral' | 'system_design') => {
+  const startInterview = (type: InterviewType) => {
     setSelectedInterviewType(type);
     setShowInterview(true);
   };
