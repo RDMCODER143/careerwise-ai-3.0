@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import AppSidebar from '@/components/AppSidebar';
 import MockInterviewInterface from '@/components/MockInterviewInterface';
@@ -23,11 +22,11 @@ import {
 
 const MockInterviews: React.FC = () => {
   const [showInterview, setShowInterview] = useState(false);
-  const [selectedInterviewType, setSelectedInterviewType] = useState('');
+  const [selectedInterviewType, setSelectedInterviewType] = useState<'technical' | 'behavioral' | 'system_design'>('technical');
 
   const interviewTypes = [
     { 
-      type: "Technical", 
+      type: "technical", 
       description: "Coding challenges and technical problem solving",
       duration: "45 min",
       difficulty: "Medium",
@@ -35,7 +34,7 @@ const MockInterviews: React.FC = () => {
       color: "bg-blue-500"
     },
     { 
-      type: "Behavioral", 
+      type: "behavioral", 
       description: "Situational and behavioral questions",
       duration: "30 min",
       difficulty: "Easy",
@@ -43,7 +42,7 @@ const MockInterviews: React.FC = () => {
       color: "bg-green-500"
     },
     { 
-      type: "System Design", 
+      type: "system_design", 
       description: "Architecture and scalability discussions",
       duration: "60 min",
       difficulty: "Hard",
@@ -66,7 +65,7 @@ const MockInterviews: React.FC = () => {
     improvementAreas: ["System Design", "Time Management"]
   };
 
-  const startInterview = (type: string) => {
+  const startInterview = (type: 'technical' | 'behavioral' | 'system_design') => {
     setSelectedInterviewType(type);
     setShowInterview(true);
   };
@@ -76,7 +75,7 @@ const MockInterviews: React.FC = () => {
       <AppSidebar userRole="job_seeker" />
       
       <main className="flex-1 overflow-auto">
-        <div className="bg-gradient-to-r from-red-800 to-red-900 text-white p-6 shadow-elegant">
+        <div className="bg-gradient-to-r from-[#9b2c2c] to-[#7a1f1f] text-white p-6 shadow-elegant">
           <div className="max-w-7xl mx-auto">
             <h1 className="text-3xl font-bold mb-2">Mock Interviews</h1>
             <p className="text-white/90 text-lg">
@@ -90,21 +89,21 @@ const MockInterviews: React.FC = () => {
           <Card className="bg-card shadow-card border-0">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <div className="p-2 bg-red-800/10 rounded-lg">
-                  <BarChart3 className="w-5 h-5 text-red-800" />
+                <div className="p-2 bg-[#9b2c2c]/10 rounded-lg">
+                  <BarChart3 className="w-5 h-5 text-[#9b2c2c]" />
                 </div>
                 Your Performance Overview
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-                <div className="text-center p-4 bg-red-50 rounded-xl">
-                  <div className="text-2xl font-bold text-red-800 mb-1">{overallStats.totalInterviews}</div>
-                  <p className="text-sm text-red-700">Total Interviews</p>
+                <div className="text-center p-4 bg-[#9b2c2c]/10 rounded-xl">
+                  <div className="text-2xl font-bold text-[#9b2c2c] mb-1">{overallStats.totalInterviews}</div>
+                  <p className="text-sm text-[#9b2c2c]/70">Total Interviews</p>
                 </div>
-                <div className="text-center p-4 bg-red-50 rounded-xl">
-                  <div className="text-2xl font-bold text-red-800 mb-1">{overallStats.averageScore}%</div>
-                  <p className="text-sm text-red-700">Average Score</p>
+                <div className="text-center p-4 bg-[#9b2c2c]/10 rounded-xl">
+                  <div className="text-2xl font-bold text-[#9b2c2c] mb-1">{overallStats.averageScore}%</div>
+                  <p className="text-sm text-[#9b2c2c]/70">Average Score</p>
                 </div>
                 <div className="text-center p-4 bg-green-50 rounded-xl">
                   <div className="text-2xl font-bold text-green-800 mb-1">{overallStats.improvement}</div>
@@ -143,8 +142,8 @@ const MockInterviews: React.FC = () => {
           <Card className="bg-card shadow-card border-0">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <div className="p-2 bg-red-800/10 rounded-lg">
-                  <Video className="w-5 h-5 text-red-800" />
+                <div className="p-2 bg-[#9b2c2c]/10 rounded-lg">
+                  <Video className="w-5 h-5 text-[#9b2c2c]" />
                 </div>
                 Start New Interview
               </CardTitle>
@@ -154,7 +153,7 @@ const MockInterviews: React.FC = () => {
                 {interviewTypes.map((interview, index) => (
                   <div key={index} className="p-4 border border-border rounded-xl hover:shadow-card transition-shadow">
                     <div className="flex items-center justify-between mb-3">
-                      <h3 className="text-lg font-semibold">{interview.type}</h3>
+                      <h3 className="text-lg font-semibold">{interview.type.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase())}</h3>
                       <Badge variant="outline" className={`${interview.color} text-white border-none`}>
                         {interview.difficulty}
                       </Badge>
@@ -171,11 +170,11 @@ const MockInterviews: React.FC = () => {
                       </div>
                     </div>
                     <Button 
-                      className="w-full bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white"
+                      className="w-full bg-gradient-to-r from-[#9b2c2c] to-[#7a1f1f] hover:from-[#7a1f1f] hover:to-[#5a1515] text-white"
                       onClick={() => startInterview(interview.type)}
                     >
                       <Play className="w-4 h-4 mr-2" />
-                      Start {interview.type}
+                      Start {interview.type.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase())}
                     </Button>
                   </div>
                 ))}
@@ -187,8 +186,8 @@ const MockInterviews: React.FC = () => {
           <Card className="bg-card shadow-card border-0">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <div className="p-2 bg-red-800/10 rounded-lg">
-                  <Calendar className="w-5 h-5 text-red-800" />
+                <div className="p-2 bg-[#9b2c2c]/10 rounded-lg">
+                  <Calendar className="w-5 h-5 text-[#9b2c2c]" />
                 </div>
                 Recent Interviews
               </CardTitle>
@@ -213,7 +212,7 @@ const MockInterviews: React.FC = () => {
                       </div>
                     </div>
                     <p className="text-sm text-muted-foreground mb-3">{interview.feedback}</p>
-                    <Button variant="outline" size="sm" className="border-red-800 text-red-800 hover:bg-red-800 hover:text-white">
+                    <Button variant="outline" size="sm" className="border-[#9b2c2c] text-[#9b2c2c] hover:bg-[#9b2c2c] hover:text-white">
                       View Details
                     </Button>
                   </div>
@@ -229,12 +228,12 @@ const MockInterviews: React.FC = () => {
             <DialogHeader>
               <DialogTitle className="flex items-center gap-2">
                 <Video className="w-5 h-5" />
-                {selectedInterviewType} Interview
+                {selectedInterviewType.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase())} Interview
               </DialogTitle>
             </DialogHeader>
             <MockInterviewInterface 
-              interviewType={selectedInterviewType}
-              onComplete={() => setShowInterview(false)}
+              type={selectedInterviewType}
+              onBack={() => setShowInterview(false)}
             />
           </DialogContent>
         </Dialog>
