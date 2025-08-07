@@ -109,7 +109,7 @@ const JobSeekerDashboard = () => {
       <AppSidebar userRole="job_seeker" />
       
       <main className="flex-1 overflow-auto">
-        <div className="bg-gradient-hero text-white p-6 shadow-elegant">
+        <div className="bg-gradient-to-r from-red-800 to-red-900 text-white p-6 shadow-elegant">
           <div className="max-w-7xl mx-auto">
             <div className="flex justify-between items-start">
               <div>
@@ -141,7 +141,7 @@ const JobSeekerDashboard = () => {
               <Card className="bg-card shadow-card border-0 hover:shadow-elegant transition-all duration-300">
                 <CardHeader className="pb-3">
                   <CardTitle className="flex items-center gap-2 text-lg">
-                    <div className="p-2 bg-gradient-hero rounded-lg">
+                    <div className="p-2 bg-gradient-to-r from-red-800 to-red-900 rounded-lg">
                       <Brain className="w-5 h-5 text-white" />
                     </div>
                     AI Resume Analysis
@@ -159,14 +159,14 @@ const JobSeekerDashboard = () => {
                     <>
                       <div className="text-center">
                         <div className="relative inline-block">
-                          <div className="w-20 h-20 bg-gradient-hero rounded-full flex items-center justify-center text-white text-2xl font-bold mb-2">
+                          <div className="w-20 h-20 bg-gradient-to-r from-red-800 to-red-900 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-2">
                             {resumeAnalysis.score}
                           </div>
-                          <div className="absolute -top-1 -right-1 w-6 h-6 bg-secondary rounded-full flex items-center justify-center">
+                          <div className="absolute -top-1 -right-1 w-6 h-6 bg-red-700 rounded-full flex items-center justify-center">
                             <Star className="w-3 h-3 text-white" />
                           </div>
                         </div>
-                        <p className="text-2xl font-bold text-primary">Score: {resumeAnalysis.score}/100</p>
+                        <p className="text-2xl font-bold text-red-800">Score: {resumeAnalysis.score}/100</p>
                       </div>
                       <div className="bg-muted rounded-lg p-3">
                         <p className="text-sm text-muted-foreground">
@@ -189,7 +189,7 @@ const JobSeekerDashboard = () => {
                     </div>
                   )}
                   
-                  <Button className="w-full bg-gradient-hero hover:opacity-90 transition-opacity">
+                  <Button className="w-full bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white">
                     <Zap className="w-4 h-4 mr-2" />
                     {resumeAnalysis ? 'Improve Resume' : 'Upload Resume'}
                   </Button>
@@ -200,7 +200,7 @@ const JobSeekerDashboard = () => {
               <Card className="bg-card shadow-card border-0 hover:shadow-elegant transition-all duration-300">
                 <CardHeader className="pb-3">
                   <CardTitle className="flex items-center gap-2 text-lg">
-                    <div className="p-2 bg-gradient-success rounded-lg">
+                    <div className="p-2 bg-gradient-to-r from-red-700 to-red-800 rounded-lg">
                       <Target className="w-5 h-5 text-white" />
                     </div>
                     Career Path
@@ -217,10 +217,10 @@ const JobSeekerDashboard = () => {
                   ) : primaryCareerSuggestion ? (
                     <>
                       <div className="text-center">
-                        <div className="p-4 bg-gradient-success/10 rounded-xl mb-3">
-                          <Award className="w-8 h-8 text-secondary mx-auto mb-2" />
+                        <div className="p-4 bg-red-800/10 rounded-xl mb-3">
+                          <Award className="w-8 h-8 text-red-800 mx-auto mb-2" />
                           <p className="font-semibold text-lg">Suggested Path:</p>
-                          <p className="text-xl font-bold text-secondary">{primaryCareerSuggestion.career_title}</p>
+                          <p className="text-xl font-bold text-red-800">{primaryCareerSuggestion.career_title}</p>
                         </div>
                       </div>
                       <div className="space-y-2">
@@ -253,7 +253,7 @@ const JobSeekerDashboard = () => {
                   
                   <Button 
                     variant="outline" 
-                    className="w-full border-secondary text-secondary hover:bg-secondary hover:text-white"
+                    className="w-full border-red-800 text-red-800 hover:bg-red-800 hover:text-white"
                     onClick={handleViewRoadmap}
                     disabled={!primaryCareerSuggestion || roadmapLoading}
                   >
@@ -271,7 +271,7 @@ const JobSeekerDashboard = () => {
               <Card className="bg-gradient-card shadow-card border-0">
                 <CardHeader className="pb-3">
                   <CardTitle className="flex items-center gap-2 text-sm">
-                    <Lightbulb className="w-4 h-4 text-accent" />
+                    <Lightbulb className="w-4 h-4 text-red-700" />
                     💡 Today's Career Tip
                   </CardTitle>
                 </CardHeader>
@@ -290,12 +290,12 @@ const JobSeekerDashboard = () => {
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <CardTitle className="flex items-center gap-2">
-                      <div className="p-2 bg-accent/10 rounded-lg">
-                        <TrendingUp className="w-5 h-5 text-accent" />
+                      <div className="p-2 bg-red-800/10 rounded-lg">
+                        <TrendingUp className="w-5 h-5 text-red-800" />
                       </div>
                       Personalized Job Matches
                     </CardTitle>
-                    <Button variant="ghost" size="sm" className="text-accent hover:text-accent-foreground hover:bg-accent/10">
+                    <Button variant="ghost" size="sm" className="text-red-800 hover:text-red-900 hover:bg-red-50">
                       View All
                       <ArrowRight className="w-4 h-4 ml-1" />
                     </Button>
@@ -336,7 +336,7 @@ const JobSeekerDashboard = () => {
                               <MapPin className="w-4 h-4" />
                               <span>{job.location}</span>
                             </div>
-                            <div className="flex items-center gap-1 text-primary font-medium text-sm">
+                            <div className="flex items-center gap-1 text-red-800 font-medium text-sm">
                               <IndianRupee className="w-4 h-4" />
                               <span>{job.salary}</span>
                               <span>•</span>
@@ -346,17 +346,17 @@ const JobSeekerDashboard = () => {
                           <div className="text-right">
                             <Badge 
                               variant="secondary" 
-                              className={`mb-2 ${job.match >= 90 ? 'bg-secondary text-white' : job.match >= 85 ? 'bg-accent text-white' : 'bg-primary text-white'}`}
+                              className={`mb-2 ${job.match >= 90 ? 'bg-red-700 text-white' : job.match >= 85 ? 'bg-red-800 text-white' : 'bg-red-600 text-white'}`}
                             >
                               {job.match}% Match
                             </Badge>
                           </div>
                         </div>
                         <div className="flex gap-2">
-                          <Button size="sm" className="flex-1 bg-gradient-hero hover:opacity-90">
+                          <Button size="sm" className="flex-1 bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white">
                             Apply Now
                           </Button>
-                          <Button variant="outline" size="sm">
+                          <Button variant="outline" size="sm" className="border-red-800 text-red-800 hover:bg-red-800 hover:text-white">
                             Save
                           </Button>
                         </div>
@@ -376,8 +376,8 @@ const JobSeekerDashboard = () => {
               <Card className="bg-card shadow-card border-0">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <div className="p-2 bg-primary/10 rounded-lg">
-                      <BarChart3 className="w-5 h-5 text-primary" />
+                    <div className="p-2 bg-red-800/10 rounded-lg">
+                      <BarChart3 className="w-5 h-5 text-red-800" />
                     </div>
                     Application Tracker
                   </CardTitle>
@@ -397,7 +397,7 @@ const JobSeekerDashboard = () => {
                       </div>
                     ))}
                   </div>
-                  <Button variant="outline" className="w-full mt-4">
+                  <Button variant="outline" className="w-full mt-4 border-red-800 text-red-800 hover:bg-red-800 hover:text-white">
                     <FileText className="w-4 h-4 mr-2" />
                     View All Applications
                   </Button>
@@ -410,8 +410,8 @@ const JobSeekerDashboard = () => {
           <Card className="bg-card shadow-card border-0">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <div className="p-2 bg-accent/10 rounded-lg">
-                  <Target className="w-5 h-5 text-accent" />
+                <div className="p-2 bg-red-800/10 rounded-lg">
+                  <Target className="w-5 h-5 text-red-800" />
                 </div>
                 Skill Gap Analysis - Bridge to Your Dream Role
               </CardTitle>
@@ -429,14 +429,14 @@ const JobSeekerDashboard = () => {
                     <p className="text-sm text-muted-foreground mb-3">
                       {gap.courses} courses available
                     </p>
-                    <Button size="sm" variant="outline" className="w-full text-accent hover:bg-accent hover:text-white">
+                    <Button size="sm" variant="outline" className="w-full text-red-800 hover:bg-red-800 hover:text-white border-red-800">
                       Start Learning
                     </Button>
                   </div>
                 ))}
               </div>
               <div className="mt-6 text-center">
-                <Button className="bg-gradient-hero hover:opacity-90">
+                <Button className="bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white">
                   <BookOpen className="w-4 h-4 mr-2" />
                   View Complete Learning Roadmap
                 </Button>

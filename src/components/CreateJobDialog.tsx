@@ -17,7 +17,7 @@ export const CreateJobDialog = ({ trigger }: CreateJobDialogProps) => {
   };
 
   const defaultTrigger = (
-    <Button className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700">
+    <Button className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white">
       <Plus className="w-4 h-4 mr-2" />
       Post New Job
     </Button>

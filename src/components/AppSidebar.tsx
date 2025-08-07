@@ -85,21 +85,55 @@ export default function AppSidebar({ userRole, userType, activeSection, onSectio
 
   // Theme colors based on role
   const isEmployer = role === "employer";
+  const isJobSeeker = role === "job_seeker";
+  
   const gradientClasses = isEmployer 
     ? "from-green-600 to-green-700" 
+    : isJobSeeker 
+    ? "from-red-800 to-red-900"
     : "from-primary to-accent";
+    
   const bgClasses = isEmployer 
     ? "bg-green-600 hover:bg-green-700" 
+    : isJobSeeker
+    ? "bg-red-800 hover:bg-red-900"
     : "bg-gradient-to-r from-primary to-accent";
+    
   const textClasses = isEmployer 
     ? "text-green-600" 
+    : isJobSeeker
+    ? "text-red-800"
     : "text-primary";
+    
   const hoverBgClasses = isEmployer 
     ? "hover:bg-green-50 hover:text-green-900" 
+    : isJobSeeker
+    ? "hover:bg-red-50 hover:text-red-900"
     : "hover:bg-gray-50 hover:text-gray-900";
+    
   const groupHoverClasses = isEmployer 
     ? "group-hover:bg-green-600/10 group-hover:scale-110 group-hover:text-green-600" 
+    : isJobSeeker
+    ? "group-hover:bg-red-800/10 group-hover:scale-110 group-hover:text-red-800"
     : "group-hover:bg-primary/10 group-hover:scale-110 group-hover:text-primary";
+
+  const welcomeBgClasses = isEmployer
+    ? "from-green-600/5 to-green-700/5"
+    : isJobSeeker
+    ? "from-red-800/5 to-red-900/5"
+    : "from-primary/5 to-accent/5";
+
+  const activeNavClasses = isEmployer
+    ? "bg-gradient-to-r from-green-600 to-green-700"
+    : isJobSeeker
+    ? "bg-gradient-to-r from-red-800 to-red-900"
+    : "bg-gradient-to-r from-primary to-accent";
+
+  const activeNavIconHoverClasses = isEmployer
+    ? "group-hover:text-green-600"
+    : isJobSeeker
+    ? "group-hover:text-red-800"
+    : "group-hover:text-primary";
 
   return (
     <>
@@ -154,7 +188,7 @@ export default function AppSidebar({ userRole, userType, activeSection, onSectio
         </div>
 
         {/* Welcome Message */}
-        <div className={`px-6 py-4 bg-gradient-to-r ${isEmployer ? 'from-green-600/5 to-green-700/5' : 'from-primary/5 to-accent/5'} border-b border-gray-50`}>
+        <div className={`px-6 py-4 bg-gradient-to-r ${welcomeBgClasses} border-b border-gray-50`}>
           <h2 className="text-sm font-medium text-gray-900">
             Welcome back, {displayFirstName}!
           </h2>
@@ -175,7 +209,7 @@ export default function AppSidebar({ userRole, userType, activeSection, onSectio
               className={({ isActive }) =>
                 `flex items-center gap-3 px-3 py-3 text-sm font-medium rounded-xl transition-all duration-200 group ${
                   isActive
-                    ? `${isEmployer ? 'bg-gradient-to-r from-green-600 to-green-700' : 'bg-gradient-to-r from-primary to-accent'} text-white shadow-lg`
+                    ? `${activeNavClasses} text-white shadow-lg`
                     : `text-gray-600 ${hoverBgClasses}`
                 }`
               }
@@ -190,7 +224,7 @@ export default function AppSidebar({ userRole, userType, activeSection, onSectio
                     }
                   `}>
                     <item.icon className={`w-4 h-4 ${
-                      isActive ? "text-white" : `text-gray-600 ${isEmployer ? 'group-hover:text-green-600' : 'group-hover:text-primary'}`
+                      isActive ? "text-white" : `text-gray-600 ${activeNavIconHoverClasses}`
                     }`} />
                   </div>
                   <span className="font-medium">{item.name}</span>

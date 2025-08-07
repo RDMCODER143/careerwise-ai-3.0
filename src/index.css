@@ -35,6 +35,17 @@ All colors MUST be HSL for consistency and theming.
     --accent-foreground: 0 0% 100%;
     --accent-glow: 268 83% 68%;
 
+    /* Job Seeker Theme - Custom Red */
+    --job-seeker-primary: 0 62% 30%;
+    --job-seeker-primary-foreground: 0 0% 100%;
+    --job-seeker-primary-glow: 0 62% 40%;
+    --job-seeker-secondary: 0 55% 35%;
+    --job-seeker-secondary-foreground: 0 0% 100%;
+    --job-seeker-secondary-glow: 0 55% 45%;
+    --job-seeker-accent: 0 70% 25%;
+    --job-seeker-accent-foreground: 0 0% 100%;
+    --job-seeker-accent-glow: 0 70% 35%;
+
     /* Employer Theme - Green Based */
     --employer-primary: 142 76% 36%;
     --employer-primary-foreground: 0 0% 100%;
@@ -66,6 +77,10 @@ All colors MUST be HSL for consistency and theming.
     --gradient-card: linear-gradient(145deg, hsl(0 0% 100% / 0.1) 0%, hsl(0 0% 100% / 0.05) 100%);
     --gradient-subtle: linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--muted)) 100%);
 
+    /* Job Seeker Gradients */
+    --gradient-job-seeker-hero: linear-gradient(135deg, hsl(var(--job-seeker-primary)) 0%, hsl(var(--job-seeker-accent)) 100%);
+    --gradient-job-seeker-success: linear-gradient(135deg, hsl(var(--job-seeker-secondary)) 0%, hsl(var(--job-seeker-secondary-glow)) 100%);
+
     /* Employer Gradients */
     --gradient-employer-hero: linear-gradient(135deg, hsl(var(--employer-primary)) 0%, hsl(var(--employer-accent)) 100%);
     --gradient-employer-success: linear-gradient(135deg, hsl(var(--employer-secondary)) 0%, hsl(var(--employer-secondary-glow)) 100%);
@@ -74,6 +89,10 @@ All colors MUST be HSL for consistency and theming.
     --shadow-elegant: 0 10px 40px -10px hsl(var(--primary) / 0.2);
     --shadow-glow: 0 0 40px hsl(var(--primary-glow) / 0.3);
     --shadow-card: 0 4px 20px -2px hsl(222 15% 15% / 0.1);
+
+    /* Job Seeker Shadows */
+    --shadow-job-seeker-elegant: 0 10px 40px -10px hsl(var(--job-seeker-primary) / 0.2);
+    --shadow-job-seeker-glow: 0 0 40px hsl(var(--job-seeker-primary-glow) / 0.3);
 
     /* Employer Shadows */
     --shadow-employer-elegant: 0 10px 40px -10px hsl(var(--employer-primary) / 0.2);
