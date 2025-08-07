@@ -1,4 +1,5 @@
-import React from 'react';
+
+import React, { useState } from 'react';
 import AppSidebar from '@/components/AppSidebar';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -6,172 +7,64 @@ import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { 
   Target, 
-  TrendingUp, 
   BookOpen, 
+  TrendingUp,
   Award,
+  AlertCircle,
+  CheckCircle2,
+  Zap,
   Clock,
   Star,
-  PlayCircle,
-  ExternalLink,
-  CheckCircle,
-  AlertCircle
+  ChevronRight
 } from "lucide-react";
 
 const SkillGapAnalyzer: React.FC = () => {
+  const [selectedRole, setSelectedRole] = useState("Frontend Developer");
+
+  // Mock data for skill gap analysis
   const skillGaps = [
     {
-      skill: "TypeScript",
-      currentLevel: 30,
-      targetLevel: 85,
-      importance: "High",
-      timeToLearn: "3-4 months",
-      courses: [
-        { 
-          name: "TypeScript Fundamentals", 
-          provider: "Udemy", 
-          rating: 4.8, 
-          duration: "8 hours",
-          youtubeUrl: "https://www.youtube.com/watch?v=BwuLxPH8IDs",
-          thumbnailUrl: "https://img.youtube.com/vi/BwuLxPH8IDs/maxresdefault.jpg"
-        },
-        { 
-          name: "Advanced TypeScript", 
-          provider: "Pluralsight", 
-          rating: 4.6, 
-          duration: "12 hours",
-          youtubeUrl: "https://www.youtube.com/watch?v=ahCwqrYpIuM",
-          thumbnailUrl: "https://img.youtube.com/vi/ahCwqrYpIuM/maxresdefault.jpg"
-        },
-        { 
-          name: "TypeScript in React", 
-          provider: "Frontend Masters", 
-          rating: 4.9, 
-          duration: "6 hours",
-          youtubeUrl: "https://www.youtube.com/watch?v=Z5iWr6Srsj8",
-          thumbnailUrl: "https://img.youtube.com/vi/Z5iWr6Srsj8/maxresdefault.jpg"
-        }
-      ],
-      jobDemand: 92
+      category: "Technical Skills",
+      skills: [
+        { name: "React.js", currentLevel: 85, requiredLevel: 90, gap: 5, priority: "Medium", courses: 3 },
+        { name: "TypeScript", currentLevel: 60, requiredLevel: 85, gap: 25, priority: "High", courses: 5 },
+        { name: "Node.js", currentLevel: 40, requiredLevel: 75, gap: 35, priority: "High", courses: 8 },
+        { name: "AWS", currentLevel: 30, requiredLevel: 70, gap: 40, priority: "High", courses: 12 },
+        { name: "Docker", currentLevel: 25, requiredLevel: 60, gap: 35, priority: "Medium", courses: 6 }
+      ]
     },
     {
-      skill: "Node.js",
-      currentLevel: 45,
-      targetLevel: 80,
-      importance: "Medium",
-      timeToLearn: "2-3 months",
-      courses: [
-        { 
-          name: "Complete Node.js Course", 
-          provider: "Udemy", 
-          rating: 4.7, 
-          duration: "15 hours",
-          youtubeUrl: "https://www.youtube.com/watch?v=TlB_eWDSMt4",
-          thumbnailUrl: "https://img.youtube.com/vi/TlB_eWDSMt4/maxresdefault.jpg"
-        },
-        { 
-          name: "Node.js API Development", 
-          provider: "Coursera", 
-          rating: 4.5, 
-          duration: "10 hours",
-          youtubeUrl: "https://www.youtube.com/watch?v=fBNz5xF-Kx4",
-          thumbnailUrl: "https://img.youtube.com/vi/fBNz5xF-Kx4/maxresdefault.jpg"
-        },
-        { 
-          name: "Node.js Express Framework", 
-          provider: "FreeCodeCamp", 
-          rating: 4.8, 
-          duration: "8 hours",
-          youtubeUrl: "https://www.youtube.com/watch?v=Oe421EPjeBE",
-          thumbnailUrl: "https://img.youtube.com/vi/Oe421EPjeBE/maxresdefault.jpg"
-        },
-        { 
-          name: "Node.js MongoDB Tutorial", 
-          provider: "Programming with Mosh", 
-          rating: 4.6, 
-          duration: "6 hours",
-          youtubeUrl: "https://www.youtube.com/watch?v=pWbMrx5rVBE",
-          thumbnailUrl: "https://img.youtube.com/vi/pWbMrx5rVBE/maxresdefault.jpg"
-        },
-        { 
-          name: "Node.js Authentication", 
-          provider: "Traversy Media", 
-          rating: 4.7, 
-          duration: "4 hours",
-          youtubeUrl: "https://www.youtube.com/watch?v=6FOq4cUdH8k",
-          thumbnailUrl: "https://img.youtube.com/vi/6FOq4cUdH8k/maxresdefault.jpg"
-        }
-      ],
-      jobDemand: 88
-    },
-    {
-      skill: "AWS",
-      currentLevel: 15,
-      targetLevel: 70,
-      importance: "Medium",
-      timeToLearn: "4-5 months",
-      courses: [
-        { 
-          name: "AWS Fundamentals", 
-          provider: "AWS Training", 
-          rating: 4.6, 
-          duration: "20 hours",
-          youtubeUrl: "https://www.youtube.com/watch?v=ulprqHHWlng",
-          thumbnailUrl: "https://img.youtube.com/vi/ulprqHHWlng/maxresdefault.jpg"
-        },
-        { 
-          name: "AWS Solutions Architect", 
-          provider: "A Cloud Guru", 
-          rating: 4.8, 
-          duration: "25 hours",
-          youtubeUrl: "https://www.youtube.com/watch?v=Ia-UEYYR44s",
-          thumbnailUrl: "https://img.youtube.com/vi/Ia-UEYYR44s/maxresdefault.jpg"
-        },
-        { 
-          name: "AWS EC2 Complete Guide", 
-          provider: "TechWorld with Nana", 
-          rating: 4.7, 
-          duration: "3 hours",
-          youtubeUrl: "https://www.youtube.com/watch?v=iHX-jtKIVNA",
-          thumbnailUrl: "https://img.youtube.com/vi/iHX-jtKIVNA/maxresdefault.jpg"
-        },
-        { 
-          name: "AWS Lambda Functions", 
-          provider: "FreeCodeCamp", 
-          rating: 4.5, 
-          duration: "5 hours",
-          youtubeUrl: "https://www.youtube.com/watch?v=eOBq__h4OJ4",
-          thumbnailUrl: "https://img.youtube.com/vi/eOBq__h4OJ4/maxresdefault.jpg"
-        }
-      ],
-      jobDemand: 75
+      category: "Soft Skills",
+      skills: [
+        { name: "Leadership", currentLevel: 70, requiredLevel: 80, gap: 10, priority: "Medium", courses: 4 },
+        { name: "Communication", currentLevel: 80, requiredLevel: 85, gap: 5, priority: "Low", courses: 2 },
+        { name: "Project Management", currentLevel: 50, requiredLevel: 75, gap: 25, priority: "High", courses: 7 }
+      ]
     }
   ];
 
-  const currentSkills = [
-    { name: "React", level: 85, category: "Frontend" },
-    { name: "JavaScript", level: 80, category: "Programming" },
-    { name: "CSS/Tailwind", level: 75, category: "Styling" },
-    { name: "Git", level: 70, category: "Tools" },
-    { name: "HTML", level: 90, category: "Markup" }
+  const recommendedCourses = [
+    { name: "Advanced TypeScript Patterns", provider: "Tech Academy", duration: "6 weeks", rating: 4.8, price: "₹2,999" },
+    { name: "Node.js Masterclass", provider: "DevCourse", duration: "8 weeks", rating: 4.9, price: "₹3,999" },
+    { name: "AWS Solutions Architect", provider: "Cloud Institute", duration: "12 weeks", rating: 4.7, price: "₹8,999" }
   ];
 
-  const getImportanceColor = (importance: string) => {
-    switch (importance) {
-      case "Critical": return "bg-red-500";
-      case "High": return "bg-orange-500";
-      case "Medium": return "bg-blue-500";
+  const getPriorityColor = (priority: string) => {
+    switch (priority) {
+      case "High": return "bg-red-500";
+      case "Medium": return "bg-yellow-500";
+      case "Low": return "bg-green-500";
       default: return "bg-gray-500";
     }
   };
 
-  const handleStartLearning = (youtubeUrl: string) => {
-    console.log('Opening YouTube URL:', youtubeUrl);
-    window.open(youtubeUrl, '_blank', 'noopener,noreferrer');
-  };
-
-  const handleViewCompleteRoadmap = (skill: string) => {
-    console.log('Viewing complete roadmap for:', skill);
-    // This could navigate to a detailed learning roadmap page
+  const getPriorityTextColor = (priority: string) => {
+    switch (priority) {
+      case "High": return "text-red-600 bg-red-50";
+      case "Medium": return "text-yellow-600 bg-yellow-50";
+      case "Low": return "text-green-600 bg-green-50";
+      default: return "text-gray-600 bg-gray-50";
+    }
   };
 
   return (
@@ -179,82 +72,186 @@ const SkillGapAnalyzer: React.FC = () => {
       <AppSidebar userRole="job_seeker" />
       
       <main className="flex-1 overflow-auto">
-        <div className="bg-gradient-hero text-white p-6 shadow-elegant">
+        <div className="bg-gradient-to-r from-red-800 to-red-900 text-white p-6 shadow-elegant">
           <div className="max-w-7xl mx-auto">
-            <h1 className="text-3xl font-bold mb-2">Skill Gap Analysis - Bridge to Your Dream Role</h1>
+            <h1 className="text-3xl font-bold mb-2">Skill Gap Analyzer</h1>
             <p className="text-white/90 text-lg">
-              Identify and bridge skill gaps for your target roles
+              Identify skill gaps and get personalized learning recommendations
             </p>
           </div>
         </div>
 
         <div className="max-w-7xl mx-auto p-6 space-y-6">
-          {/* Skill Gap Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {skillGaps.map((gap, index) => (
-              <Card key={index} className="bg-card shadow-card border-0">
-                <CardHeader className="pb-4">
-                  <div className="flex items-center justify-between">
-                    <CardTitle className="text-xl">{gap.skill}</CardTitle>
-                    <Badge className={`text-white text-xs ${getImportanceColor(gap.importance)}`}>
-                      {gap.importance}
-                    </Badge>
+          {/* Role Selection */}
+          <Card className="bg-card shadow-card border-0">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <div className="p-2 bg-red-800/10 rounded-lg">
+                  <Target className="w-5 h-5 text-red-800" />
+                </div>
+                Target Role Analysis
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center justify-between p-4 bg-red-50 rounded-xl">
+                <div>
+                  <h3 className="text-lg font-semibold text-red-800">Current Analysis: {selectedRole}</h3>
+                  <p className="text-red-700 text-sm">Based on current job market requirements</p>
+                </div>
+                <Button variant="outline" className="border-red-800 text-red-800 hover:bg-red-800 hover:text-white">
+                  Change Role
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Skill Gap Analysis */}
+          {skillGaps.map((category, categoryIndex) => (
+            <Card key={categoryIndex} className="bg-card shadow-card border-0">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <div className="p-2 bg-red-800/10 rounded-lg">
+                    <TrendingUp className="w-5 h-5 text-red-800" />
                   </div>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="text-sm text-muted-foreground">
-                    {gap.courses.length} courses available
-                  </div>
-                  
-                  {/* Course Thumbnails */}
-                  <div className="grid grid-cols-2 gap-2">
-                    {gap.courses.slice(0, 4).map((course, courseIndex) => (
-                      <div 
-                        key={courseIndex} 
-                        className="relative cursor-pointer hover:scale-105 transition-transform"
-                        onClick={() => handleStartLearning(course.youtubeUrl)}
-                      >
-                        <img 
-                          src={course.thumbnailUrl} 
-                          alt={course.name}
-                          className="w-full h-16 rounded-lg object-cover"
-                          onError={(e) => {
-                            const target = e.target as HTMLImageElement;
-                            target.src = "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"; // Fallback thumbnail
-                          }}
-                        />
-                        <div className="absolute inset-0 bg-black/20 rounded-lg flex items-center justify-center hover:bg-black/30 transition-colors">
-                          <PlayCircle className="w-4 h-4 text-white" />
-                        </div>
-                        <div className="absolute bottom-1 left-1 right-1">
-                          <div className="bg-black/70 text-white text-xs px-1 py-0.5 rounded text-center truncate">
-                            {course.name}
-                          </div>
-                        </div>
+                  {category.category}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                {category.skills.map((skill, index) => (
+                  <div key={index} className="p-4 border border-border rounded-xl hover:shadow-card transition-shadow">
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-3">
+                        <h4 className="font-semibold text-lg">{skill.name}</h4>
+                        <Badge className={`px-3 py-1 text-xs ${getPriorityTextColor(skill.priority)}`}>
+                          {skill.priority} Priority
+                        </Badge>
                       </div>
-                    ))}
+                      <div className="text-right">
+                        <p className="text-sm text-muted-foreground">Gap: {skill.gap}%</p>
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-2 mb-4">
+                      <div className="flex justify-between text-sm">
+                        <span>Current Level</span>
+                        <span>{skill.currentLevel}%</span>
+                      </div>
+                      <div className="relative">
+                        <Progress value={skill.currentLevel} className="h-2 bg-gray-200" />
+                        <div 
+                          className="absolute top-0 h-2 bg-red-200 rounded-full"
+                          style={{ left: `${skill.currentLevel}%`, width: `${skill.gap}%` }}
+                        />
+                      </div>
+                      <div className="flex justify-between text-sm text-muted-foreground">
+                        <span>Required: {skill.requiredLevel}%</span>
+                        <span>{skill.courses} courses available</span>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-2">
+                      <Button size="sm" className="flex-1 bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white">
+                        <BookOpen className="w-4 h-4 mr-2" />
+                        Start Learning
+                      </Button>
+                      <Button variant="outline" size="sm" className="border-red-800 text-red-800 hover:bg-red-800 hover:text-white">
+                        View Courses
+                      </Button>
+                    </div>
                   </div>
+                ))}
+              </CardContent>
+            </Card>
+          ))}
 
-                  <Button 
-                    className="w-full bg-primary hover:bg-primary/90 text-white"
-                    onClick={() => handleStartLearning(gap.courses[0]?.youtubeUrl)}
-                  >
-                    <PlayCircle className="w-4 h-4 mr-2" />
-                    Start Learning
-                  </Button>
+          {/* Recommended Learning Path */}
+          <Card className="bg-card shadow-card border-0">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <div className="p-2 bg-red-800/10 rounded-lg">
+                  <Award className="w-5 h-5 text-red-800" />
+                </div>
+                Recommended Learning Path
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {recommendedCourses.map((course, index) => (
+                <div key={index} className="p-4 border border-border rounded-xl hover:shadow-card transition-shadow">
+                  <div className="flex justify-between items-start mb-3">
+                    <div className="flex-1">
+                      <h4 className="font-semibold text-lg mb-1">{course.name}</h4>
+                      <p className="text-muted-foreground text-sm mb-2">{course.provider}</p>
+                      <div className="flex items-center gap-4 text-sm">
+                        <div className="flex items-center gap-1">
+                          <Clock className="w-4 h-4" />
+                          <span>{course.duration}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Star className="w-4 h-4 text-yellow-500" />
+                          <span>{course.rating}</span>
+                        </div>
+                        <div className="font-semibold text-red-800">{course.price}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex gap-2">
+                    <Button size="sm" className="flex-1 bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white">
+                      Enroll Now
+                    </Button>
+                    <Button variant="outline" size="sm" className="border-red-800 text-red-800 hover:bg-red-800 hover:text-white">
+                      Learn More
+                    </Button>
+                  </div>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
 
-                  <Button 
-                    variant="outline" 
-                    className="w-full"
-                    onClick={() => handleViewCompleteRoadmap(gap.skill)}
-                  >
-                    <BookOpen className="w-4 h-4 mr-2" />
-                    View Complete Learning Roadmap
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          {/* Action Plan */}
+          <Card className="bg-card shadow-card border-0">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <div className="p-2 bg-red-800/10 rounded-lg">
+                  <Zap className="w-5 h-5 text-red-800" />
+                </div>
+                Your 90-Day Action Plan
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div className="p-4 bg-red-50 rounded-xl">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 bg-red-800 text-white rounded-full flex items-center justify-center text-sm font-bold">1</div>
+                    <h4 className="font-semibold">Weeks 1-4: TypeScript Fundamentals</h4>
+                  </div>
+                  <p className="text-muted-foreground text-sm ml-11">Master TypeScript basics and advanced patterns</p>
+                </div>
+                
+                <div className="p-4 bg-gray-50 rounded-xl">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 bg-gray-400 text-white rounded-full flex items-center justify-center text-sm font-bold">2</div>
+                    <h4 className="font-semibold">Weeks 5-8: Node.js Backend Development</h4>
+                  </div>
+                  <p className="text-muted-foreground text-sm ml-11">Build full-stack applications with Node.js</p>
+                </div>
+                
+                <div className="p-4 bg-gray-50 rounded-xl">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 bg-gray-400 text-white rounded-full flex items-center justify-center text-sm font-bold">3</div>
+                    <h4 className="font-semibold">Weeks 9-12: AWS Cloud Deployment</h4>
+                  </div>
+                  <p className="text-muted-foreground text-sm ml-11">Deploy and manage applications on AWS</p>
+                </div>
+              </div>
+              
+              <div className="mt-6 text-center">
+                <Button className="bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white">
+                  <ChevronRight className="w-4 h-4 mr-2" />
+                  Start Your Learning Journey
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </main>
     </div>

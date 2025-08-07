@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import AppSidebar from '@/components/AppSidebar';
 import CareerRoadmap from '@/components/CareerRoadmap';
@@ -62,7 +63,7 @@ const CareerCounseling: React.FC = () => {
       <AppSidebar userRole="job_seeker" />
       
       <main className="flex-1 overflow-auto">
-        <div className="bg-gradient-hero text-white p-6 shadow-elegant">
+        <div className="bg-gradient-to-r from-red-800 to-red-900 text-white p-6 shadow-elegant">
           <div className="max-w-7xl mx-auto">
             <h1 className="text-3xl font-bold mb-2">Career Counseling</h1>
             <p className="text-white/90 text-lg">
@@ -76,8 +77,8 @@ const CareerCounseling: React.FC = () => {
           <Card className="bg-card shadow-card border-0">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <div className="p-2 bg-primary/10 rounded-lg">
-                  <Target className="w-5 h-5 text-primary" />
+                <div className="p-2 bg-red-800/10 rounded-lg">
+                  <Target className="w-5 h-5 text-red-800" />
                 </div>
                 Recommended Career Paths
               </CardTitle>
@@ -90,14 +91,14 @@ const CareerCounseling: React.FC = () => {
                       <div className="flex-1">
                         <div className="flex items-center gap-3 mb-2">
                           <h3 className="text-xl font-semibold">{suggestion.career_title}</h3>
-                          <Badge variant={suggestion.match_score >= 90 ? "default" : suggestion.match_score >= 80 ? "secondary" : "outline"}>
+                          <Badge variant={suggestion.match_score >= 90 ? "default" : suggestion.match_score >= 80 ? "secondary" : "outline"} className={suggestion.match_score >= 90 ? "bg-red-800 text-white" : suggestion.match_score >= 80 ? "bg-red-700 text-white" : ""}>
                             {suggestion.match_score}% Match
                           </Badge>
                         </div>
                         <p className="text-muted-foreground mb-3">{suggestion.justification}</p>
                         <div className="flex flex-wrap gap-2 mb-3">
                           {suggestion.required_skills?.map((skill, skillIndex) => (
-                            <Badge key={skillIndex} variant="outline" className="text-xs">
+                            <Badge key={skillIndex} variant="outline" className="text-xs border-red-800 text-red-800">
                               {skill}
                             </Badge>
                           ))}
@@ -119,7 +120,7 @@ const CareerCounseling: React.FC = () => {
                     </div>
                     <div className="flex gap-2">
                       <Button 
-                        className="flex-1 bg-gradient-hero hover:opacity-90"
+                        className="flex-1 bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white"
                         onClick={() => handleGenerateRoadmap(suggestion.career_title)}
                         disabled={roadmapLoading}
                       >
@@ -130,7 +131,7 @@ const CareerCounseling: React.FC = () => {
                         )}
                         Generate Roadmap
                       </Button>
-                      <Button variant="outline">
+                      <Button variant="outline" className="border-red-800 text-red-800 hover:bg-red-800 hover:text-white">
                         <BookOpen className="w-4 h-4 mr-2" />
                         View Details
                       </Button>
@@ -144,7 +145,7 @@ const CareerCounseling: React.FC = () => {
                   <p className="text-muted-foreground mb-4">
                     Complete your profile and upload your resume to get personalized career recommendations.
                   </p>
-                  <Button className="bg-gradient-hero hover:opacity-90">
+                  <Button className="bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white">
                     Complete Profile
                   </Button>
                 </div>
@@ -157,8 +158,8 @@ const CareerCounseling: React.FC = () => {
             <Card className="bg-card shadow-card border-0">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <div className="p-2 bg-accent/10 rounded-lg">
-                    <CheckCircle className="w-5 h-5 text-accent" />
+                  <div className="p-2 bg-red-800/10 rounded-lg">
+                    <CheckCircle className="w-5 h-5 text-red-800" />
                   </div>
                   Your Career Journey
                 </CardTitle>
@@ -194,20 +195,20 @@ const CareerCounseling: React.FC = () => {
             <Card className="bg-card shadow-card border-0">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <div className="p-2 bg-secondary/10 rounded-lg">
-                    <Calendar className="w-5 h-5 text-secondary" />
+                  <div className="p-2 bg-red-800/10 rounded-lg">
+                    <Calendar className="w-5 h-5 text-red-800" />
                   </div>
                   1-on-1 Counseling
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="text-center p-6 bg-gradient-card rounded-xl">
-                  <Users className="w-12 h-12 text-primary mx-auto mb-4" />
+                  <Users className="w-12 h-12 text-red-800 mx-auto mb-4" />
                   <h3 className="text-lg font-semibold mb-2">Expert Guidance</h3>
                   <p className="text-muted-foreground text-sm mb-4">
                     Connect with career counselors who specialize in your field of interest
                   </p>
-                  <Button className="w-full bg-gradient-hero hover:opacity-90">
+                  <Button className="w-full bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white">
                     <Calendar className="w-4 h-4 mr-2" />
                     Schedule Session
                   </Button>

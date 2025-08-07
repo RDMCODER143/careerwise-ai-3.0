@@ -57,9 +57,9 @@ const JobRecommendations: React.FC = () => {
   const getMatchScore = () => Math.floor(Math.random() * 20) + 80;
   
   const getMatchColor = (match: number) => {
-    if (match >= 90) return "bg-green-500";
-    if (match >= 80) return "bg-blue-500";
-    return "bg-gray-500";
+    if (match >= 90) return "bg-red-800";
+    if (match >= 80) return "bg-red-700";
+    return "bg-red-600";
   };
 
   const formatSalary = (min?: number, max?: number) => {
@@ -101,7 +101,7 @@ const JobRecommendations: React.FC = () => {
         <main className="flex-1 flex items-center justify-center">
           <div className="text-center">
             <p className="text-red-600">Error loading job recommendations</p>
-            <Button onClick={() => window.location.reload()} className="mt-4">
+            <Button onClick={() => window.location.reload()} className="mt-4 bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white">
               Retry
             </Button>
           </div>
@@ -115,7 +115,7 @@ const JobRecommendations: React.FC = () => {
       <AppSidebar userRole="job_seeker" />
       
       <main className="flex-1 overflow-auto">
-        <div className="bg-gradient-hero text-white p-6 shadow-elegant">
+        <div className="bg-gradient-to-r from-red-800 to-red-900 text-white p-6 shadow-elegant">
           <div className="max-w-7xl mx-auto">
             <h1 className="text-3xl font-bold mb-2">Job Recommendations</h1>
             <p className="text-white/90 text-lg">
@@ -164,7 +164,7 @@ const JobRecommendations: React.FC = () => {
                       <SelectItem value="parttime">Part-time</SelectItem>
                     </SelectContent>
                   </Select>
-                  <Button variant="outline" size="icon">
+                  <Button variant="outline" size="icon" className="border-red-800 text-red-800 hover:bg-red-800 hover:text-white">
                     <Filter className="w-4 h-4" />
                   </Button>
                 </div>
@@ -209,7 +209,7 @@ const JobRecommendations: React.FC = () => {
                           </div>
                         </div>
                         <div className="flex items-center gap-4 mb-3">
-                          <Badge variant="outline">{job.job_type}</Badge>
+                          <Badge variant="outline" className="border-red-800 text-red-800">{job.job_type}</Badge>
                           <div className="flex items-center gap-1 text-green-600">
                             <IndianRupee className="w-4 h-4" />
                             <span className="font-medium">{formatSalary(job.salary_min, job.salary_max)}</span>
@@ -220,7 +220,7 @@ const JobRecommendations: React.FC = () => {
                         </p>
                         <div className="flex flex-wrap gap-2">
                           {job.requirements?.slice(0, 4).map((skill, index) => (
-                            <Badge key={index} variant="secondary" className="text-xs">
+                            <Badge key={index} variant="secondary" className="text-xs bg-red-50 text-red-800">
                               {skill}
                             </Badge>
                           ))}
@@ -238,7 +238,7 @@ const JobRecommendations: React.FC = () => {
                         </Button>
                       ) : (
                         <Button 
-                          className="flex-1 bg-gradient-hero hover:opacity-90"
+                          className="flex-1 bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white"
                           onClick={() => handleApply(job.id, job.title)}
                           disabled={isCreatingApplication}
                         >
@@ -250,10 +250,10 @@ const JobRecommendations: React.FC = () => {
                           Apply Now
                         </Button>
                       )}
-                      <Button variant="outline">
+                      <Button variant="outline" className="border-red-800 text-red-800 hover:bg-red-800 hover:text-white">
                         <Bookmark className="w-4 h-4" />
                       </Button>
-                      <Button variant="outline">
+                      <Button variant="outline" className="border-red-800 text-red-800 hover:bg-red-800 hover:text-white">
                         <Star className="w-4 h-4" />
                       </Button>
                     </div>
