@@ -83,6 +83,24 @@ export default function AppSidebar({ userRole, userType, activeSection, onSectio
 
   const displayFirstName = firstName || profile?.full_name?.split(' ')[0] || 'User';
 
+  // Theme colors based on role
+  const isEmployer = role === "employer";
+  const gradientClasses = isEmployer 
+    ? "from-green-600 to-green-700" 
+    : "from-primary to-accent";
+  const bgClasses = isEmployer 
+    ? "bg-green-600 hover:bg-green-700" 
+    : "bg-gradient-to-r from-primary to-accent";
+  const textClasses = isEmployer 
+    ? "text-green-600" 
+    : "text-primary";
+  const hoverBgClasses = isEmployer 
+    ? "hover:bg-green-50 hover:text-green-900" 
+    : "hover:bg-gray-50 hover:text-gray-900";
+  const groupHoverClasses = isEmployer 
+    ? "group-hover:bg-green-600/10 group-hover:scale-110 group-hover:text-green-600" 
+    : "group-hover:bg-primary/10 group-hover:scale-110 group-hover:text-primary";
+
   return (
     <>
       {/* Mobile Menu Button */}
@@ -123,7 +141,7 @@ export default function AppSidebar({ userRole, userType, activeSection, onSectio
         {/* Header */}
         <div className="px-6 py-6 border-b border-gray-100">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-gradient-to-r from-primary to-accent rounded-lg flex items-center justify-center">
+            <div className={`w-8 h-8 bg-gradient-to-r ${gradientClasses} rounded-lg flex items-center justify-center`}>
               <span className="text-white font-bold text-sm">C</span>
             </div>
             <div>
@@ -136,7 +154,7 @@ export default function AppSidebar({ userRole, userType, activeSection, onSectio
         </div>
 
         {/* Welcome Message */}
-        <div className="px-6 py-4 bg-gradient-to-r from-primary/5 to-accent/5 border-b border-gray-50">
+        <div className={`px-6 py-4 bg-gradient-to-r ${isEmployer ? 'from-green-600/5 to-green-700/5' : 'from-primary/5 to-accent/5'} border-b border-gray-50`}>
           <h2 className="text-sm font-medium text-gray-900">
             Welcome back, {displayFirstName}!
           </h2>
@@ -157,8 +175,8 @@ export default function AppSidebar({ userRole, userType, activeSection, onSectio
               className={({ isActive }) =>
                 `flex items-center gap-3 px-3 py-3 text-sm font-medium rounded-xl transition-all duration-200 group ${
                   isActive
-                    ? "bg-gradient-to-r from-primary to-accent text-white shadow-lg"
-                    : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                    ? `${isEmployer ? 'bg-gradient-to-r from-green-600 to-green-700' : 'bg-gradient-to-r from-primary to-accent'} text-white shadow-lg`
+                    : `text-gray-600 ${hoverBgClasses}`
                 }`
               }
             >
@@ -168,11 +186,11 @@ export default function AppSidebar({ userRole, userType, activeSection, onSectio
                     flex items-center justify-center w-8 h-8 rounded-lg transition-all duration-200
                     ${isActive 
                       ? "bg-white/20" 
-                      : "bg-gray-100 group-hover:bg-primary/10 group-hover:scale-110"
+                      : `bg-gray-100 ${groupHoverClasses}`
                     }
                   `}>
                     <item.icon className={`w-4 h-4 ${
-                      isActive ? "text-white" : "text-gray-600 group-hover:text-primary"
+                      isActive ? "text-white" : `text-gray-600 ${isEmployer ? 'group-hover:text-green-600' : 'group-hover:text-primary'}`
                     }`} />
                   </div>
                   <span className="font-medium">{item.name}</span>
@@ -185,7 +203,7 @@ export default function AppSidebar({ userRole, userType, activeSection, onSectio
         {/* User Profile Section */}
         <div className="border-t border-gray-100 p-4">
           <div className="flex items-center gap-3 mb-3">
-            <div className="w-10 h-10 bg-gradient-to-r from-primary to-accent rounded-full flex items-center justify-center">
+            <div className={`w-10 h-10 bg-gradient-to-r ${gradientClasses} rounded-full flex items-center justify-center`}>
               {profile?.profile_photo_url ? (
                 <img 
                   src={profile.profile_photo_url} 
